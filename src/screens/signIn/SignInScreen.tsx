@@ -1,10 +1,22 @@
 import React from 'react'; 
-import { View, Text, StyleSheet } from 'react-native'; 
+import { View, Text, StyleSheet, Pressable } from 'react-native'; 
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-const SignInScreen = () => { 
+type RootStackParamList = {
+  HomeScreen: undefined;
+};
+
+type Props = NativeStackScreenProps<RootStackParamList>;
+
+const SignInScreen = ({navigation}: Props) => { 
 	return ( 
     	<View style={styles.signInScreen}> 
-        	<Text>SignInScreen</Text> 
+      <Text>SignInScreen</Text> 
+      <Pressable onPress={()=>navigation.navigate('HomeScreen') }>
+        <Text>
+          SignIn
+        </Text>
+      </Pressable>
         </View> 
     ) 
   } 

@@ -10,8 +10,8 @@ const App = () => {
 	return ( 
         <NavigationContainer> 
             <Stack.Navigator> 
-              <Stack.Screen name="SignInScreen" component={SignInScreen} options={({ }) => ({ title: ''})}/> 
-              <Stack.Screen name="HomeScreen" component={HomeScreen} options={({ }) => ({ title: ''})}/> 
+              <Stack.Screen name="SignInScreen" component={SignInScreen} options={({ }) => ({ title: '', animation: 'slide_from_right',})}/> 
+              <Stack.Screen name="HomeScreen" component={HomeScreen} options={({ }) => ({ title: '', animation: 'slide_from_right',})}/> 
             </Stack.Navigator> 
         </NavigationContainer> 
     ) 
