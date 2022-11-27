@@ -13,10 +13,17 @@ import {
 import {ScrollView} from 'react-native-gesture-handler';
 import {Container} from '../../components/Container';
 import {LineRoundButton} from '../../components/LineRoundButton';
+import {ModalContainer} from '../../components/ModalContainer';
 interface Props {}
 export const WriteQuestionScreen = () => {
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const [isFocused, setIsFocused] = useState<boolean>(false);
+  const [publicPushModalVisible, setPublicPushModalVisible] = useState<boolean>(
+    false,
+  );
+  const [privatePushModalVisible, setPrivatePushModalVisible] = useState<
+    boolean
+  >(false);
 
   const onKeyboardDidshow = (e: KeyboardEvent) => {
     setKeyboardHeight(e.endCoordinates.height);
@@ -39,7 +46,14 @@ export const WriteQuestionScreen = () => {
   };
   return (
     <>
-      <ScrollView style={{backgroundColor: '#fff', paddingVertical: isFocused ?(Dimensions.get('screen').height - keyboardHeight) / 6 : (Dimensions.get('screen').height) / 4}}>
+      <ScrollView
+        style={{
+          backgroundColor: '#fff',
+          paddingVertical: isFocused
+            ? (Dimensions.get('screen').height - keyboardHeight) / 6
+            : Dimensions.get('screen').height / 4,
+        }}
+      >
         <Container>
           <View style={styles.textCardView}>
             <TextInput
@@ -55,7 +69,7 @@ export const WriteQuestionScreen = () => {
             ></TextInput>
           </View>
         </Container>
-        </ScrollView>
+      </ScrollView>
       <View
         style={[
           styles.buttonContainer,
@@ -64,13 +78,22 @@ export const WriteQuestionScreen = () => {
       >
         <LineRoundButton
           buttonText={'전체 공개'}
-          onPress={() => console.log('전체 공개 버튼 클릭')}
+          onPress={() => setPublicPushModalVisible(!publicPushModalVisible)}
         />
         <LineRoundButton
           buttonText={'그룹 공개'}
-          onPress={() => console.log('그룹 공개 버튼 클릭')}
+          onPress={() => setPrivatePushModalVisible(!privatePushModalVisible)}
         />
       </View>
+      <ModalContainer
+        modalVisible={publicPushModalVisible}
+        setModalVisible={setPublicPushModalVisible}
+        content={'전체에게 공유할 수 있는 질문 수는\n하루에 하나입니다.\n그래도 공유하시겠어요?'}
+        firstButtonText={'공유하기'}
+        firstButtonAction={() => console.log('공유하기')}
+        secondButtonText={'나중에 하기'}
+        secondButtonAction={() => console.log('나중에 하기')}
+      />
     </>
   );
 };
