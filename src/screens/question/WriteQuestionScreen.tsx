@@ -8,6 +8,7 @@ import {
   Keyboard,
   KeyboardEvent,
   KeyboardAvoidingView,
+  Dimensions,
 } from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Container} from '../../components/Container';
@@ -38,7 +39,7 @@ export const WriteQuestionScreen = () => {
   };
   return (
     <>
-      <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
+      <ScrollView style={{backgroundColor: '#fff', paddingVertical: isFocused ?(Dimensions.get('screen').height - keyboardHeight) / 6 : (Dimensions.get('screen').height) / 4}}>
         <Container>
           <View style={styles.textCardView}>
             <TextInput
@@ -54,7 +55,7 @@ export const WriteQuestionScreen = () => {
             ></TextInput>
           </View>
         </Container>
-      </ScrollView>
+        </ScrollView>
       <View
         style={[
           styles.buttonContainer,
