@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Pressable} from 'react-native';
 interface Props {
 
 }
-export const QuestionListScreen = () => {
+export const QuestionScreen = () => {
   
   return (
     <>
