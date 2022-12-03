@@ -10,8 +10,7 @@ export const PostItem = ({ content, numberOfAnswers, moveToScreen}: Props) => {
   
   return (
     <>
-      <Pressable onPress={()=>moveToScreen()} style={styles.postView} >
-        {/* <Text style={styles.label}>{label}</Text> */}
+      <Pressable onPress={()=>moveToScreen()} >
         <View style={styles.contentView}>
           <Text style={styles.contentText}>{content}</Text>
           <Text style={styles.numText}>{numberOfAnswers}</Text>
@@ -22,9 +21,6 @@ export const PostItem = ({ content, numberOfAnswers, moveToScreen}: Props) => {
 }
 
 const styles = StyleSheet.create({
-  postView: {
-
-  },
   label: {
     fontWeight: 'bold'
   },
@@ -32,7 +28,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
+    padding: 20,
     height: 100,
   },
   contentText: {

@@ -3,6 +3,7 @@ import {View, StyleSheet, FlatList, Dimensions} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 import {PostItem} from '../../components/PostItem';
+import { LabelPostItem } from '../../components/LabelPostItem';
 
 interface Props {}
 
@@ -43,6 +44,7 @@ export const QuestionListScreen = () => {
 
   const AllTypePostListFragment = () => (
     <>
+      <LabelPostItem label={'HOT 질문'} content={'순간이 생각나는 노래가 있다면 무엇인가요?'} numberOfAnswers={235} moveToScreen={()=> console.log('HOT 질문으로 이동')} />
       <FlatList
         style={{flex: 1, backgroundColor: '#FFFFFF'}}
         data={questionList}
