@@ -41,6 +41,30 @@ export const QuestionListScreen = () => {
     })();
   }, []);
 
+  const AllTypePostListFragment = () => (
+    <>
+      <FlatList
+        style={{flex: 1, backgroundColor: '#FFFFFF'}}
+        data={questionList}
+        renderItem={question => (
+          <PostItem
+            key={question.item.questionId}
+            content={question.item.content}
+            numberOfAnswers={question.item.numAnswer}
+            moveToScreen={() =>
+              console.log(question.item.questionId, '의 상세 화면으로 이동')
+            }
+          />
+        )}
+        ItemSeparatorComponent={() => (
+          <View style={{height: 1, backgroundColor: '#F6F6F6'}}></View>
+        )}
+      />
+    </>
+  );
+
+  const GroupTypePostListFragment = () => <></>;
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -69,49 +93,10 @@ export const QuestionListScreen = () => {
       keyboardDismissMode="on-drag"
       initialLayout={{width: Dimensions.get('window').width}}
     >
-      <Tab.Screen
-        name={`전체`}
-        children={() => (
-          <FlatList
-            style={{flex: 1, backgroundColor: '#FFFFFF'}}
-            data={questionList}
-            renderItem={question => (
-              <PostItem
-                key={question.item.questionId}
-                content={question.item.content}
-                numberOfAnswers={question.item.numAnswer}
-                moveToScreen={() =>
-                  console.log(question.item.questionId, '의 상세 화면으로 이동')
-                }
-              />
-            )}
-            ItemSeparatorComponent={() => (
-              <View style={{height: 1, backgroundColor: '#F6F6F6'}}></View>
-            )}
-          />
-        )}
-      />
+      <Tab.Screen name={`전체`} children={() => <AllTypePostListFragment />} />
       <Tab.Screen
         name={`그룹`}
-        children={() => (
-          <FlatList
-            style={{flex: 1, backgroundColor: '#FFFFFF'}}
-            data={questionList}
-            renderItem={question => (
-              <PostItem
-                key={question.item.questionId}
-                content={question.item.content}
-                numberOfAnswers={question.item.numAnswer}
-                moveToScreen={() =>
-                  console.log(question.item.questionId, '의 상세 화면으로 이동')
-                }
-              />
-            )}
-            ItemSeparatorComponent={() => (
-              <View style={{height: 1, backgroundColor: '#F6F6F6'}}></View>
-            )}
-          />
-        )}
+        children={() => <GroupTypePostListFragment />}
       />
     </Tab.Navigator>
   );
