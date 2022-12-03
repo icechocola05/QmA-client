@@ -10,4 +10,6 @@ interface QuestionDto {
   userNickname?: string,
   isAnswerPrivate?: boolean,
   numAnswer?: number,
+  didAnswer?: boolean,
+  isAnswerReadable?: boolean,
 }
