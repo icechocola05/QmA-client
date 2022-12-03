@@ -1,9 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import {View, StyleSheet, FlatList, Dimensions} from 'react-native';
+import {
+  View,
+  StyleSheet,
+  FlatList,
+  Dimensions,
+  ScrollView,
+  Text,
+} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 
 import {PostItem} from '../../components/PostItem';
-import { LabelPostItem } from '../../components/LabelPostItem';
+import {LabelPostItem} from '../../components/LabelPostItem';
+import {Container} from '../../components/Container';
+import {CardContainer} from '../../components/CardContainer';
 
 interface Props {}
 
@@ -44,7 +53,12 @@ export const QuestionListScreen = () => {
 
   const AllTypePostListFragment = () => (
     <>
-      <LabelPostItem label={'HOT 질문'} content={'순간이 생각나는 노래가 있다면 무엇인가요?'} numberOfAnswers={235} moveToScreen={()=> console.log('HOT 질문으로 이동')} />
+      <LabelPostItem
+        label={'HOT 질문'}
+        content={'순간이 생각나는 노래가 있다면 무엇인가요?'}
+        numberOfAnswers={235}
+        moveToScreen={() => console.log('HOT 질문으로 이동')}
+      />
       <FlatList
         style={{flex: 1, backgroundColor: '#FFFFFF'}}
         data={questionList}
@@ -65,7 +79,22 @@ export const QuestionListScreen = () => {
     </>
   );
 
-  const GroupTypePostListFragment = () => <></>;
+  const GroupTypePostListFragment = () => (
+    <>
+      <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
+        <Container>
+          <View style={styles.groupTitleView}>
+            <View style={styles.groupColorCircle} />
+            <Text>내 동기들</Text>
+          </View>
+          <CardContainer
+            content={'학부 시절 중 가장 행복했을 때는?'}
+            moveToScreen={() => console.log('해당 질문 페이지로 이동')}
+          />
+        </Container>
+      </ScrollView>
+    </>
+  );
 
   return (
     <Tab.Navigator
@@ -108,5 +137,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+  groupTitleView: {
+    flexDirection: 'row',
+    marginVertical: 10,
+  },
+  groupColorCircle: {
+    backgroundColor: '#D45BFF',
+    width: 15,
+    height: 15,
+    borderRadius: 15,
+    marginRight: 5,
   },
 });
